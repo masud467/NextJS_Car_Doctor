@@ -84,6 +84,7 @@ const Navbar = () => {
             <a className="btn btn-outline btn-primary text-white">
               appointment
             </a>
+           <Link href={'/login'}> <button className="btn btn-primary text-white font-semibold">Login</button></Link>
           </div>
         </div>
       </div>
