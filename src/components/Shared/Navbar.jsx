@@ -1,31 +1,12 @@
+"use client";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { use } from "react";
 import { IoCartOutline, IoSearch } from "react-icons/io5";
 
 const Navbar = () => {
-  const navItems = [
-    {
-      title: "Home",
-      path: "/",
-    },
-    {
-      title: "About",
-      path: "/about",
-    },
-    {
-      title: "Services",
-      path: "/services",
-    },
-    {
-      title: "Blogs",
-      path: "/blogs",
-    },
-    {
-      title: "Contact",
-      path: "/contact",
-    },
-  ];
+  const session = useSession();
   return (
     <div className="bg-slate-200">
       <div className="navbar container mx-auto">
@@ -79,17 +60,58 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <div className="flex items-center gap-5">
-            <IoCartOutline className="text-2xl"/>
-            <IoSearch className="text-2xl"/>
+            <IoCartOutline className="text-2xl" />
+            <IoSearch className="text-2xl" />
             <a className="btn btn-outline btn-primary text-white">
               appointment
-            </a>
-           <Link href={'/login'}> <button className="btn btn-primary text-white font-semibold">Login</button></Link>
+            </a>{" "}
+            {!session.data ? (
+              <Link
+                href="/login"
+                className="btn btn-primary text-white font-semibold"
+              >
+                Login
+              </Link>
+            ) : (
+              <button
+                onClick={() => signOut()}
+                className="btn btn-primary text-white font-semibold"
+              >
+                Logout
+              </button>
+            )}
           </div>
         </div>
       </div>
     </div>
   );
 };
+
+const navItems = [
+  {
+    title: "Home",
+    path: "/",
+  },
+  {
+    title: "About",
+    path: "/about",
+  },
+  {
+    title: "Services",
+    path: "/services",
+  },
+  {
+    title: "MyBooking",
+    path: "/my-booking",
+  },
+  {
+    title: "Blogs",
+    path: "/blogs",
+  },
+  {
+    title: "Contact",
+    path: "/contact",
+  },
+];
 
 export default Navbar;
