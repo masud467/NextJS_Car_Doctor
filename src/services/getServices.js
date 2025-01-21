@@ -1,10 +1,11 @@
+import axios from "axios";
+
 export const getServices = async () => {
   try {
-    const res = await fetch(
+    const res = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}/services/api/get-all`
     );
-    const services = res.json();
-    return services;
+    return res.data;
   } catch (error) {
     console.log(error);
     return [];
@@ -13,11 +14,10 @@ export const getServices = async () => {
 
 export const getServicesDetails = async (id) => {
   try {
-    const res = await fetch(
+    const res = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}/services/api/${id}`
     );
-    const service = res.json();
-    return service;
+    return res.data;
   } catch (error) {
     console.log(error);
     return [];
