@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 import ServicesCard from "../Cards/ServicesCard";
 import { getServices } from "@/services/getServices";
@@ -16,9 +15,10 @@ const Services = async () => {
         </p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10 ">
-        {services?.length>0 && services?.map((service) => (
-          <ServicesCard key={service?._id} service={service} />
-        ))}
+        {services?.length > 0 &&
+          services?.map((service) => (
+            <ServicesCard key={service?._id} service={service} />
+          ))}
       </div>
       <div className="text-center mt-10">
         <button className="btn btn-primary btn-outline">More Services</button>
@@ -26,5 +26,4 @@ const Services = async () => {
     </div>
   );
 };
-
 export default Services;
