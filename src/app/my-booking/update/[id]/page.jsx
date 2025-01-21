@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -26,7 +26,7 @@ const page = ({ params }) => {
     const res = await fetch(
       `http://localhost:3000/my-booking/api/booking/${unwrappedParams.id}`,
       {
-        method:"PATCH",
+        method: "PATCH",
         body: JSON.stringify(updatedBooking),
         headers: {
           "Content-Type": "application/json",
@@ -36,8 +36,6 @@ const page = ({ params }) => {
     if (res.status === 200) {
       toast.success("Booking updated successfully");
     }
-
-    
   };
 
   useEffect(() => {

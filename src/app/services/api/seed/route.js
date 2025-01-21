@@ -1,5 +1,6 @@
 import { connectDB } from "@/lib/connectDB";
 import { services } from "@/lib/services";
+import { NextResponse } from "next/server";
 
 export const POST = async () => {
   const db = await connectDB();
@@ -7,8 +8,8 @@ export const POST = async () => {
   try {
     await servicesCollection.deleteMany();
     const res = await servicesCollection.insertMany(services);
-    return Response.json({ message: "Seeded Successfully" }, { status: 200 });
+    return NextResponse.json({ message: "Seeded Successfully" }, { status: 200 });
   } catch (error) {
-    console.log(error);
+    return NextResponse.json({ message: "Error in seeding" }, { status: 500 });
   }
 };

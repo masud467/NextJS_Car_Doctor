@@ -39,7 +39,6 @@ const checkout = ({ params }) => {
       toast.success("Booking successful");
       e.target.reset();
     }
-    
   };
 
   useEffect(() => {
