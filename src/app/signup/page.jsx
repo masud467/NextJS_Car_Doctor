@@ -2,9 +2,9 @@
 import SocialLogin from "@/components/Shared/SocialLogin";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 
-const Page = () => {
+const SignPage = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -80,4 +80,12 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default function Page() {
+  return (
+    <Suspense
+      fallback={<div className="container mx-auto p-24">Loading...</div>}
+    >
+      <SignPage></SignPage>
+    </Suspense>
+  );
+}

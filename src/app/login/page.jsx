@@ -1,12 +1,12 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import SocialLogin from "@/components/Shared/SocialLogin";
 
-const Page = () => {
+const LoginPage = () => {
   const searchParams = useSearchParams();
   const path = searchParams.get("redirect");
   const handleLogin = async (e) => {
@@ -73,4 +73,12 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default function Page() {
+  return (
+    <Suspense
+      fallback={<div className="container mx-auto p-24">Loading...</div>}
+    >
+      <LoginPage></LoginPage>
+    </Suspense>
+  );
+}
