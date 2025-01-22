@@ -10,7 +10,7 @@ const Page = () => {
   const [bookings, setBookings] = useState([]);
   const loadData = async () => {
     const res = await fetch(
-      `http://localhost:3000/my-booking/api/${session?.data?.user?.email}`
+      `https://next-js-car-doctor.vercel.app/my-booking/api/${session?.data?.user?.email}`
     );
     const data = await res.json();
     setBookings(data?.myBookings);
@@ -18,7 +18,7 @@ const Page = () => {
 
   const handleDelete = async (id) => {
     const res = await fetch(
-      `http://localhost:3000/my-booking/api/booking/${id}`,
+      `https://next-js-car-doctor.vercel.app/my-booking/api/booking/${id}`,
       {
         method: "DELETE",
       }

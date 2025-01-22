@@ -28,13 +28,16 @@ const checkout = ({ params }) => {
       serviceTitle: title,
       price: price,
     };
-    const res = await fetch("http://localhost:3000/checkout/api/new-booking", {
-      method: "POST",
-      body: JSON.stringify(newBooking),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      "https://next-js-car-doctor.vercel.app/checkout/api/new-booking",
+      {
+        method: "POST",
+        body: JSON.stringify(newBooking),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     if (res.status === 200) {
       toast.success("Booking successful");
       e.target.reset();

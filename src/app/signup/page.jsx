@@ -13,13 +13,16 @@ const SignPage = () => {
       email: form.email.value,
       password: form.password.value,
     };
-    const res = await fetch("http://localhost:3000/signup/api", {
-      method: "POST",
-      body: JSON.stringify(newUser),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      "https://next-js-car-doctor.vercel.app/signup/api",
+      {
+        method: "POST",
+        body: JSON.stringify(newUser),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     if (res.status === 200) {
       form.reset();
     }

@@ -10,7 +10,7 @@ const page = ({ params }) => {
   const [serviceUpdated, setServiceUpdated] = useState({});
   const loadBooking = async () => {
     const bookingDetails = await fetch(
-      `http://localhost:3000/my-booking/api/booking/${unwrappedParams.id}`
+      `https://next-js-car-doctor.vercel.app/my-booking/api/booking/${unwrappedParams.id}`
     );
     const data = await bookingDetails.json();
     setServiceUpdated(data.response);
@@ -24,7 +24,7 @@ const page = ({ params }) => {
       address: e.target.address.value,
     };
     const res = await fetch(
-      `http://localhost:3000/my-booking/api/booking/${unwrappedParams.id}`,
+      `https://next-js-car-doctor.vercel.app/my-booking/api/booking/${unwrappedParams.id}`,
       {
         method: "PATCH",
         body: JSON.stringify(updatedBooking),
