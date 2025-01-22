@@ -9,20 +9,25 @@ import SocialLogin from "@/components/Shared/SocialLogin";
 const LoginPage = () => {
   const searchParams = useSearchParams();
   const path = searchParams.get("redirect");
+
   const handleLogin = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    const res = await signIn("credentials", {
-      email,
-      password,
-      redirect: true,
-      callbackUrl: path ? path : "/",
-    });
-    // if (res.status === 200) {
-    //   router.push("/");
-    // }
+    try {
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: true,
+        callbackUrl: path ? path : "/",
+      });
+      if (res?.error) {
+        console.log("login failed");
+      }
+    } catch (error) {
+      console.log("login error ");
+    }
   };
   return (
     <div className="container mx-auto p-24">
@@ -37,11 +42,13 @@ const LoginPage = () => {
         </div>
         <div className="border-2 lg:p-24 p-5">
           <h1 className="text-center text-3xl font-semibold">Login</h1>
+
           <form onSubmit={handleLogin}>
             <label htmlFor="email">Email</label>
             <input
               type="text"
               id="email"
+              name="email"
               placeholder="your email"
               className="border-2 p-2 w-full"
             />
@@ -49,6 +56,7 @@ const LoginPage = () => {
             <input
               type="password"
               id="password"
+              name="password"
               placeholder="password"
               className="border-2 p-2 w-full"
             />
